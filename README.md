@@ -32,10 +32,14 @@ Results:
   
     Out[46]: [('EarlyKnown_OM065354', 'group_1', -99.0), 
               ('OY594635_1KnownGene', 'group_1', -99.0)]
+              
   This output is showing a -99 percent similarity. For this I used a similarityPercent calculation of lambda distance, maxLen: 1- distance / maxLen * 100). Since the Levenshtein calculation is a measurement of dissimilarity, I opted to not subtract the Levenshtein numbers from 1 and take the percent from the Levenshtein distance and maxLen. Still the results were disappointing after that, as the percents returned were always 100.
+  
   The streaming/simulated streaming did run without crashing but did not produce the tuple desired. However, it did get to 5 sets of comparisons for each dataframe in knownXY; so I had 10 lines of each known gene (2) to each of the 5 unknowns by looking at the print out:
+  
     EarlyKnown_OM065354 g for each g
     OY594635_1KnownGene g for each g... (x5)
+    
   The parquet files kept the file naming consistent, and by feeding the stream simulation ("maxFilesPerTrigger", 1) the pyspark automatic partitioning is much needed to process this calculation faster than letting the system waste efficiency by one calculation at a time.
 When gene directories are smaller, the multiGenes function can be called which does not write the dataframes to parquet files, but puts them in dictionaries with the dataframe as the value and the key is the naming scheme corresponding to the original gene file, like the parquet names.
 
