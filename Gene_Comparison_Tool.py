@@ -14,7 +14,7 @@ Created on Sun Sep 24 19:57:42 2023
 
 #Testing set of data streamed to the Gene Comparison Tool program, 1 file per trigger
 
-#ML pipeline model to transform your streaming data
+#ML pipeline model to transform to streaming data
 
 # COMMAND ----------
 
